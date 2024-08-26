@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Datos del PDF</title>
+  </head>
+  <body>
+    <h1>Filtrar Datos del PDF</h1>
+    <form method="post">
+      <label for="secuencia">Secuencia:</label>
+      <input type="text" id="secuencia" name="secuencia" />
+      <button type="submit">Buscar</button>
+    </form>
+
+    {% if datos %}
+    <table border="1">
+      <thead>
+        <tr>
+          {% set headers = datos[0].keys() %} {% for header in headers %}
+          <th>{{ header }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for dato in datos %}
+        <tr>
+          {% for header in headers %}
+          <td>{{ dato.get(header, '') }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p>No se encontraron datos para la secuencia proporcionada.</p>
+    {% endif %}
+  </body>
+</html>
