@@ -38,6 +38,11 @@ Repositorio para encontrar mas facil tu horario salon y secuencia
         <li>Ejecuta el siguiente comando para instalar las dependencias:</li>
     </ol>
     <pre><code>pip install -r requirements.txt</code></pre>
+      <ol>
+        <li>Ejecuta algunas si no te dejan este comando.</li>
+    </ol>
+     <pre> pip install --upgrade pip setuptools</pre>
+
 
     <h3>4. Ejecutar la Aplicación</h3>
     <p>Para ejecutar la aplicación, sigue estos pasos:</p>
