@@ -3,14 +3,12 @@ import fitz  # PyMuPDF
 from flask import Flask, request, jsonify, send_file, send_from_directory
 from PIL import Image, ImageDraw
 
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__)
 
 PDF_FILE_NAME = 'horarios_periodo_2025_1.pdf'
-PDF_DIR = 'pdfs'
+PDF_DIR = '.'
 CAPTURAS_DIR = 'capturas'
 
-if not os.path.exists(PDF_DIR):
-    os.makedirs(PDF_DIR)
 if not os.path.exists(CAPTURAS_DIR):
     os.makedirs(CAPTURAS_DIR)
 
@@ -25,6 +23,9 @@ def buscar_texto_y_capturar(pdf_path, texto, margen=10):
 
     doc = fitz.open(archivo_pdf)
     paginas_a_capturar = []
+    capturas_subcarpeta = os.path.join(CAPTURAS_DIR, texto)
+    if not os.path.exists(capturas_subcarpeta):
+        os.makedirs(capturas_subcarpeta)
 
     for pagina_num in range(len(doc)):
         pagina = doc.load_page(pagina_num)
@@ -51,9 +52,9 @@ def buscar_texto_y_capturar(pdf_path, texto, margen=10):
                     if x1 > x0 and y1 > y0:
                         draw.rectangle([x0, y0, x1, y1], outline="yellow", width=3)
 
-                img_path = f"{CAPTURAS_DIR}/{pdf_path.replace('.pdf', '')}_{pagina_num + 1}_{idx + 1}_recorte.png"
+                img_path = f"{capturas_subcarpeta}/{texto}_{pagina_num + 1}_{idx + 1}_recorte.png"
                 img.save(img_path)
-                paginas_a_capturar.append(img_path)
+                paginas_a_capturar.append(f"capturas/{texto}/{texto}_{pagina_num + 1}_{idx + 1}_recorte.png")
 
     return paginas_a_capturar
 
@@ -80,10 +81,12 @@ def images():
     if not texto:
         return jsonify({'error': 'Falta el texto de búsqueda'}), 400
 
-    capturas_dir = os.listdir(CAPTURAS_DIR)
-    images = [img for img in capturas_dir if img.startswith(f"{PDF_FILE_NAME.replace('.pdf', '')}_{texto}_")]
-    images.sort()
-    return jsonify(images)
+    capturas_subcarpeta = os.path.join(CAPTURAS_DIR, texto)
+    if not os.path.exists(capturas_subcarpeta):
+        return jsonify([])  # No hay capturas para mostrar
+
+    capturas = os.listdir(capturas_subcarpeta)
+    return jsonify([f"{texto}/{img}" for img in capturas])
 
 @app.route('/download', methods=['GET'])
 def download():
@@ -96,6 +99,10 @@ def download():
         return jsonify({'error': 'Archivo no encontrado'}), 404
 
     return send_file(file_path, as_attachment=True)
+
+@app.route('/capturas/<path:filename>')
+def serve_image(filename):
+    return send_from_directory(CAPTURAS_DIR, filename)
 
 if __name__ == '__main__':
     app.run(debug=True)

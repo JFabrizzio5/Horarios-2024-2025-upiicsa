@@ -76,6 +76,9 @@
                                 images.forEach(function (img) {
                                     $('#resultTable').append('<tr><td colspan="18"><img src="/capturas/' + img + '" class="img-fluid" alt="Captura"></td></tr>');
                                 });
+                            },
+                            error: function () {
+                                alert('No se pudieron cargar las imágenes.');
                             }
                         });
                     },
