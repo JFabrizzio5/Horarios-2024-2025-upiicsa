@@ -65,7 +65,7 @@
                     data: JSON.stringify({ texto: texto }),
                     success: function (response) {
                         var filename = response.filename;
-                        $('#resultTable').html('<tr><td colspan="18"><a href="/download?filename=' + filename + '" class="btn btn-success">Descargar PDF</a></td></tr>');
+                        $('#resultTable').html('<tr><td colspan="18"><a href="/pdfs/download?filename=' + filename + '" class="btn btn-success">Descargar PDF</a></td></tr>');
 
                         // Mostrar imágenes en la tabla
                         $.ajax({

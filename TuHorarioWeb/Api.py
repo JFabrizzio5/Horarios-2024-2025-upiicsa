@@ -6,7 +6,7 @@ from PIL import Image, ImageDraw
 app = Flask(__name__)
 
 PDF_FILE_NAME = 'horarios_periodo_2025_1.pdf'
-PDF_DIR = '.'
+PDF_DIR = 'pdfs'
 CAPTURAS_DIR = 'capturas'
 
 if not os.path.exists(CAPTURAS_DIR):
