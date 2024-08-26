@@ -1,5 +1,5 @@
-\# Horarios-2024-2025-upiicsa Repositorio para encontrar mas facil tu horario salon y secuencia
-
+Horarios-2024-2025-upiicsa Repositorio para encontrar mas facil tu horario salon y secuencia
+==============================================
 Proyecto de Búsqueda y Captura de Texto en PDF
 ==============================================
 
@@ -45,7 +45,7 @@ Con el entorno virtual activado, instala las dependencias del proyecto utilizand
 
     pip install -r requirements.txt
 
-1.  Ejecuta algunas si no te dejan este comando.
+1.  Ejecuta algunas si no te dejan este comando para actualizar tools.
 
  pip install --upgrade pip setuptools
 
