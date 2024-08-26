@@ -18,7 +18,7 @@ Para crear un entorno virtual en Python, sigue estos pasos:
 2.  Navega a la carpeta del proyecto.
 3.  Crea un entorno virtual con el siguiente comando:
 
-    python -m venv nombre_del_entorno
+    `python -m venv nombre_del_entorno`
 
 Reemplaza `nombre_del_entorno` con el nombre que prefieras para tu entorno virtual, como `venv`.
 
@@ -28,11 +28,11 @@ Después de crear el entorno virtual, debes activarlo:
 
 *   **En Windows:**
 
-    nombre_del_entorno\Scripts\activate
+   `nombre_del_entorno\Scripts\activate`
 
 *   **En macOS y Linux:**
 
-    source nombre_del_entorno/bin/activate
+  `source nombre_del_entorno/bin/activate`
 
 Una vez activado, tu terminal debería mostrar el nombre del entorno virtual en el prompt.
 
@@ -41,10 +41,10 @@ Una vez activado, tu terminal debería mostrar el nombre del entorno virtual en 
 Con el entorno virtual activado, instala las dependencias del proyecto utilizando el archivo `requirements.txt`:
 
 1.  Asegúrate de que el archivo `requirements.txt` esté en la raíz de tu proyecto.
-2.  Ejecuta el siguiente comando para instalar las dependencias:
-
-    pip install -r requirements.txt
-
+2.  Ejecuta el siguiente comando para instalar las dependencias pero antes actualiza pip:
+    `-m pip install --upgrade pip`
+   `pip install -r requirements.txt`
+    
 1.  Ejecuta algunas si no te dejan este comando para actualizar tools.
 
  pip install --upgrade pip setuptools
@@ -56,7 +56,7 @@ Para ejecutar la aplicación, sigue estos pasos:
 1.  Asegúrate de que el entorno virtual esté activado.
 2.  Ejecuta el archivo principal de la aplicación (por ejemplo, `Api.py`) con el siguiente comando:
 
-    python Api.py
+    `python Api.py`
 
 La aplicación se iniciará y estará disponible en [http://127.0.0.1:5000/](http://127.0.0.1:5000/).
 
