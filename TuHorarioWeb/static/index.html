@@ -235,6 +235,7 @@
             </div>
         </div>
     </div>
+
     <script>
         $(document).ready(function () {
             $('#searchForm').submit(function (e) {
@@ -253,7 +254,7 @@
                     data: JSON.stringify({ texto: texto }),
                     success: function (response) {
                         var filename = response.filename;
-                        $('#resultTable').html('<tr><td colspan="19"><a href="/download?filename=' + filename + '" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Descargar PDF</a></td></tr>');
+                        $('#resultTable').html('<tr><td colspan="19" class="text-center"><a href="/download?filename=' + filename + '" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Descargar PDF</a></td></tr>');
 
                         // Mostrar imágenes en la tabla
                         $.ajax({
