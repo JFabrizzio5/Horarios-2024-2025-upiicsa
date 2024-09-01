@@ -12,9 +12,15 @@ CAPTURAS_DIR = 'capturas'
 if not os.path.exists(CAPTURAS_DIR):
     os.makedirs(CAPTURAS_DIR)
 
+# Sirve el archivo index.html desde la carpeta 'static'
 @app.route('/')
 def index():
     return send_from_directory('static', 'index.html')
+
+# Sirve imágenes desde la misma carpeta 'static'
+@app.route('/static/<path:filename>')
+def static_files(filename):
+    return send_from_directory('static', filename)
 
 def buscar_texto_y_capturar(pdf_path, texto, margen=10):
     archivo_pdf = os.path.join(PDF_DIR, pdf_path)
